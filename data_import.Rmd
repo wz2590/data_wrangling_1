@@ -5,6 +5,8 @@ output: github_document
 
 ```{r}
 library(tidyverse)
+library(readxl)
+library(haven)
 ```
 
 
@@ -26,3 +28,66 @@ litters_df
 ```{r}
 skimr::skim(litters_df)
 ```
+
+
+
+## options to read_csv
+
+```{r}
+litters_df = read_csv("./data/FAS_litters.csv", skip = 10, 
+                      na = c("", "NA", "."), )
+```
+
+
+check out ?read_csv for more info.
+
+
+## other file formats
+
+read in an excel file
+
+
+```{r}
+mlb_df = read_excel("./data/mlb11.xlsx")
+mlb_df
+```
+
+```{r}
+mlb_df = read_excel("./data/mlb11.xlsx", range = "A1:F7")
+mlb_df
+```
+
+
+read in a SAS file
+
+
+```{r}
+pulse_df = read_sas("./data/public_pulse_data.sas7bdat")
+pulse_df
+```
+
+
+
+## comparison with base R
+
+what about `read.csv` ... ?
+
+```{r}
+litters_base = read.csv("data/FAS_litters.csv")
+litters_readr = read_csv("data/FAS_litters.csv")
+
+litters_base
+litters_readr
+```
+
+
+## exporting data
+
+Export the mlb sub-table
+
+
+```{r}
+write_csv(mlb_df, "./data/mlb_subtable.csv")
+```
+
+
