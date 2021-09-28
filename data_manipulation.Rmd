@@ -93,6 +93,16 @@ filter(litters_df, group %in% c("con7", "Mod8"))
 ```
 
 
+## `mutate`
+
+```{r}
+# first add a new column naming wt_gain and do the calculation
+# then change all characters in the name column to lower case
+mutate(litters_df, 
+       wt_gain = gd18_weight - gd0_weight,
+       group = str_to_lower(group))
+```
+
 
 
 
