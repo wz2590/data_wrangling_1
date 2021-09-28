@@ -105,6 +105,29 @@ mutate(litters_df,
 
 
 
+## `arrange`
+
+put things in order
+
+```{r}
+# df, first_priority, second_priority
+arrange(litters_df, pups_born_alive, gd0_weight)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
