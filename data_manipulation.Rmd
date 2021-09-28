@@ -1,0 +1,101 @@
+---
+title: "Data manipulation"
+output: github_document
+---
+
+```{r setup}
+library(tidyverse)
+```
+
+
+## Load in the FAS litters Data
+```{r}
+litters_df = read_csv("./data/FAS_litters.csv")
+litters_df = janitor::clean_names(litters_df)
+litters_df
+```
+
+## `select`
+
+choose some columns and not others
+
+```{r}
+select(litters_df, group, gd0_weight:gd_of_birth)
+```
+
+```{r}
+select(litters_df, -litter_number)
+```
+
+
+Renaming columns...
+
+```{r}
+select(litters_df, GROUP = group, LITTer_NUmBer = litter_number)
+```
+
+This also works.
+```{r}
+rename(litters_df, GROUP = group, LITTer_NUmBer = litter_number)
+```
+
+
+
+Select helpers
+
+```{r}
+select(litters_df, starts_with("gd"))
+```
+
+```{r}
+select(litters_df, litter_number, everything())
+```
+
+#relocate the chosen column to the first
+```{r}
+relocate(litters_df, litter_number)
+
+litters_df
+```
+
+
+
+## `filter`
+
+```{r}
+filter(litters_df, gd0_weight < 22)
+```
+
+```{r}
+filter(litters_df, gd0_weight >= 22)
+```
+
+```{r}
+filter(litters_df, gd_of_birth == 20)
+```
+
+```{r}
+filter(litters_df, gd_of_birth != 20)
+```
+
+```{r}
+filter(litters_df, gd0_weight >= 22, gd_of_birth == 20)
+```
+
+```{r}
+filter(litters_df, group == "Mod8")
+```
+
+
+%in% represents "or"
+```{r}
+filter(litters_df, group %in% c("con7", "Mod8"))
+```
+
+
+
+
+
+
+
+
